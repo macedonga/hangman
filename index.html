@@ -35,6 +35,8 @@
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="msapplication-config" content="browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
+    <link rel="dns-prefetch" href="https://random-word-api.herokuapp.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 
 <body>
@@ -90,10 +92,13 @@
     <script src="assets/js/main.js"></script>
     <!-- Webworker -->
     <script>
-        if ("serviceWorker" in navigator)
-            navigator.serviceWorker.register('worker.js').catch((err) => {
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register('worker.js').then(function(registration) {
+                console.info('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function(err) {
                 console.error('ServiceWorker registration failed: ', err);
             });
+        }
     </script>
 </body>
 

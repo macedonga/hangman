@@ -11,18 +11,7 @@ this.addEventListener('install', event => {
             return cache.addAll([
                 "index.html",
                 "assets/css/main.css",
-                "assets/js/main.js",
-                "favicons/android-chrome-192x192.png",
-                "favicons/android-chrome-512x512.png",
-                "favicons/apple-touch-icon.png",
-                "favicons/favicon-16x16.png",
-                "favicons/favicon-32x32.png",
-                "favicons/favicon-194x194.png",
-                "favicons/favicon.ico",
-                "favicons/mstile-150x150.png",
-                "favicons/safari-pinned-tab.svg",
-                "site.webmanifest",
-                "browserconfig.xml",
+                "assets/js/main.js"
             ]);
         })
     );
