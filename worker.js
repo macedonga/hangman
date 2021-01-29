@@ -9,7 +9,7 @@ this.addEventListener('install', event => {
     event.waitUntil(
         caches.open(currentCache.offline).then(function(cache) {
             return cache.addAll([
-                "index.html",
+                "offline.html",
                 "assets/css/main.css",
                 "assets/js/main.js"
             ]);

@@ -5,10 +5,7 @@ const maxHint = 2;
 var numHint = 0;
 var guessed = [];
 
-const words = [
-    "test",
-    "testtest"
-]
+const words = ['mccloy', 'nonphysiologic', 'melt', 'interplight', 'upbraid', 'subtranslucency', 'tsunami', 'underbake', 'overintellectualizing', 'precarnival', 'subsidizable', 'unchanged', 'choreal', 'calabrian', 'melba', 'predemand', 'circumspective', 'arzachel', 'postbellum', 'hellbender', 'noncollusion', 'nonhackneyed', 'nineveh', 'swishy', 'unimmersed', 'ingratitude', 'nonsculptured', 'intervenular', 'repent', 'uncompulsory', 'jeffrey', 'inaudible', 'konrad', 'bicephalous', 'overbuild', 'sulfarsenide', 'wheezer', 'minhow', 'boulimia', 'therophyte', 'appositely', 'justify', 'catholicness', 'dehydrator', 'quittable', 'coleridgian', 'isolatable', 'misprint', 'pseudoambidextrous', 'labiovelarised', 'magnify', 'alger', 'slavocrat', 'urodele', 'vivaria', 'unconcatenated', 'symbiotically', 'subastral', 'unlackeyed', 'tenderizing', 'azorian', 'coulisse', 'landwaiter', 'behindhand', 'gatefold', 'hoisington', 'tortillasllon', 'gospodin', 'diplodocuses', 'circumcolumnar', 'undershooting', 'raspatory', 'bosphorus', 'rightly', 'flogger', 'qat', 'frigidly', 'engulfment', 'heelplate', 'inexhaustible', 'irreducibly', 'essonite', 'defectible', 'ophiolatry', 'embark', 'secularization', 'licentiation', 'minneapolis', 'incapacitated', 'untoadying', 'afterworld', 'accouplement', 'hydroairplane', 'distilling', 'geezer', 'prehensible', 'sherardize', 'paulinize', 'aggrieved', 'hosier'];
 
 const image = {
     "1": $("#head"),
@@ -48,9 +45,21 @@ const finish = () => {
 }
 
 const randomWord = () => {
-    $.get("https://random-word-api.herokuapp.com/word?swear=0", (word) => {
-        answer = word[0];
-        console.log("You're a cheater\n" + answer);
+    if (!offline) {
+        $.get("https://random-word-api.herokuapp.com/word?swear=0", (word) => {
+            answer = word[0];
+            console.log("You're a cheater\n" + answer);
+            guessedWord();
+            updateMistakes();
+            updateHints();
+            setTimeout(() => {
+                $(".loader").fadeOut(500, () => {
+                    $(".content").fadeIn(500);
+                });
+            }, 500);
+        });
+    } else {
+        answer = words[Math.floor(Math.random() * words.length)];
         guessedWord();
         updateMistakes();
         updateHints();
@@ -59,7 +68,7 @@ const randomWord = () => {
                 $(".content").fadeIn(500);
             });
         }, 500);
-    });
+    }
 }
 
 const generateButtons = () => {
