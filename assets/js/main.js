@@ -46,7 +46,7 @@ const finish = () => {
 
 const randomWord = () => {
     if (!offline) {
-        $.get("https://random-word-api.herokuapp.com/word?swear=0", (word) => {
+        $.get("https://random-word-api.herokuapp.com/word", (word) => {
             answer = word[0];
             console.log("You're a cheater\n" + answer);
             guessedWord();
